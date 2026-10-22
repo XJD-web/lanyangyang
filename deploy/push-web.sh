@@ -3,15 +3,21 @@
 # 一键把前端（懒羊羊界面）发布到云服务器 80 端口
 #
 # 用法（在本机项目根目录执行）：
-#   bash deploy/push-web.sh                    # 默认服务器 120.48.55.183
-#   bash deploy/push-web.sh root@1.2.3.4       # 换服务器
+#   bash deploy/push-web.sh root@1.2.3.4       # 直接传服务器地址
+#   LYY_TARGET=root@1.2.3.4 bash deploy/push-web.sh   # 或用环境变量
 #
 # 做的事：npm run build -> 打包 dist -> scp -> 服务器解包到 /opt/lanyangyang-web
-# 前置：本机已把 deploy 公钥加到服务器（~/.ssh/lanyangyang_deploy）
+# 前置：本机已把 deploy 公钥加到服务器（路径可用 SSH_KEY 覆盖）
+# 注意：服务器地址不入库（仓库是公开的），必须由参数或环境变量传入。
 # =============================================================================
 set -euo pipefail
 
-TARGET="${1:-root@120.48.55.183}"
+TARGET="${1:-${LYY_TARGET:-}}"
+if [ -z "$TARGET" ]; then
+  echo "用法: bash deploy/push-web.sh root@<服务器IP或域名>" >&2
+  echo "   或: LYY_TARGET=root@<服务器IP或域名> bash deploy/push-web.sh" >&2
+  exit 1
+fi
 KEY="${SSH_KEY:-$HOME/.ssh/lanyangyang_deploy}"
 REMOTE_DIR="/opt/lanyangyang-web"
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
