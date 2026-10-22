@@ -1,0 +1,16 @@
+[Unit]
+Description=Lanyangyang API Server
+After=network.target
+
+[Service]
+Type=simple
+# install.sh 会自动把这里的路径/Node 路径替换成真实值
+WorkingDirectory=/opt/lanyangyang-api
+ExecStart=/usr/bin/node /opt/lanyangyang-api/server.js
+Environment=PORT=3000
+Environment=NODE_ENV=production
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

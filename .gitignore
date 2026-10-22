@@ -1,0 +1,36 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+dist-electron/
+release*/
+*.exe
+*.blockmap
+
+# 部署压缩包（由源码 + install.sh 现场生成，不入库）
+*.tar.gz
+
+# 运行时数据（环境报告落盘目录）
+server/data/
+
+# 本地日志与临时文件
+*.log
+.tmp-*
+.shot-*.png
+.live-shot.png
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 本地 AI 工作记录（不属于项目代码）
+.workbuddy/
+
+# 本地环境覆盖
+.env.local
+.env.*.local
+# 生产构建地址里写的是具体服务器，各人不同：复制 .env.production.example 自行填写
+.env.production

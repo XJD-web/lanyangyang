@@ -1,0 +1,33 @@
+{
+  "name": "lanyangyang",
+  "version": "0.1.0",
+  "private": true,
+  "description": "程序员开发环境极速装配工具",
+  "author": "",
+  "main": "dist-electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "node server/server.js",
+    "pack": "electron-builder --dir",
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win --config electron-builder.json"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "adm-zip": "^0.5.18",
+    "axios": "^1.20.0",
+    "element-plus": "^2.8.4",
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "cors": "^2.8.6",
+    "electron": "^31.6.0",
+    "electron-builder": "^24.13.3",
+    "express": "^5.3.0",
+    "vite": "^5.4.10",
+    "vite-plugin-electron": "^0.28.8"
+  }
+}
